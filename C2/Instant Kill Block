@@ -1,0 +1,11 @@
+-- Instant Kill Block Script
+-- Put this inside the kill Part
+
+local part = script.Parent
+
+part.Touched:Connect(function(hit)
+	local humanoid = hit.Parent:FindFirstChild("Humanoid")
+	if humanoid then
+		humanoid.Health = 0 -- instantly kill
+	end
+end)
