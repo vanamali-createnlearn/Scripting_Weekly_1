@@ -1,0 +1,23 @@
+-- Damage Block Script
+-- Put this inside the damaging Part
+
+local part = script.Parent
+local DAMAGE = 20       -- health lost
+local COOLDOWN = 1      -- seconds before damage can happen again
+
+local debounce = false
+
+part.Touched:Connect(function(hit)
+	if debounce then return end
+	local humanoid = hit.Parent:FindFirstChild("Humanoid")
+
+	if humanoid then
+		debounce = true
+		humanoid:TakeDamage(DAMAGE)
+
+		-- reset debounce after cooldown
+		task.delay(COOLDOWN, function()
+			debounce = false
+		end)
+	end
+end)
